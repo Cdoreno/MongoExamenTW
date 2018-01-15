@@ -1,0 +1,31 @@
+html,body {
+    height: 100%;
+    background: #e6ffff; 
+    background: linear-gradient(#e6ffff, #ccffff); 
+}
+
+*{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#title{
+    color: navy;
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    margin-bottom: 25px;
+}
+
+#title_web{
+    font-weight: bold;
+}
+
+/*CSS desktop*/
+@media screen and (min-width: 769px){    
+
+}
+
+/*CSS mobile*/
+@media screen and (max-width: 768px){
+
+}
+

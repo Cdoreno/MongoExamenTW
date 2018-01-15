@@ -51,7 +51,7 @@ public class ServletInicial extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MongoClientURI uri = new MongoClientURI(
-"mongodb+srv://admin:admin@examen-1raiw.mongodb.net/test");
+"mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
 MongoClient mongoClient = new MongoClient(uri);
 //Create Database
 MongoDatabase database = mongoClient.getDatabase("examen");

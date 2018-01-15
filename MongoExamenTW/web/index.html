@@ -1,20 +1,66 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html lang="en">
     <head>
-        <title>TODO supply a title</title>
+        <title>Exam IES BORJA MOLL - LogIn</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/log_css.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/js_log.js"></script>
+
     </head>
     <body>
+
+        <!-- Title -->
+        <h1 class="text-center" id="title">IES BORJA MOLL</h1>
         
-        <h1>Prueba</h1>
-        <div>Más pruebas</div>
+        <!-- Panel's log -->
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center" id="title_panel"><h3>EXAM'S LOGIN</h3></div>
+                    <div class="panel-body">
+                        <form class="form-signin">
+                            <input type="text" placeholder="Introduce a DNI or NIE valid" class="form-control" size="10"  maxlength="9" id="dni" name="nif" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" title="Introduce a DNI or NIE valid" required>
+                            <br>
+                            <div class="col-sm-4"><button class="btn btn-lg btn-primary" id="login" type="submit">Login</button></div>
+                            <div class="col-sm-4"></div>
+                        </form>
+                        <div class="col-sm-4"><button class="btn btn-lg btn-secondary">View notes</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <!-- Modal after click in submit -->
+        <div class="modal fade" id="alert" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content -->
+                <div class="panel panel-default panel-modal" id="configurationPanel">
+                    <div class="panel-heading"><h2>EXAM'S TYPE</h2></div>
+                    <div class="panel-body">
+                        <div class="well">
+                            <p>Welcome </p>
+                            <p>Please, choose the exam's type for do it.</p>
+                        </div>
+                        <select class="form-control" id="selectExam"> </select>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary" id="cancelConfig">Cancel</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary" id="saveConfig">Start Exam</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
-
-<!-- Comentario de pruebas -->

@@ -1,9 +1,14 @@
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.bson.Document;
 
 public class ServletInicial extends HttpServlet {
 
@@ -45,7 +50,36 @@ public class ServletInicial extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        MongoClientURI uri = new MongoClientURI(
+"mongodb+srv://admin:admin@examen-1raiw.mongodb.net/test");
+MongoClient mongoClient = new MongoClient(uri);
+//Create Database
+MongoDatabase database = mongoClient.getDatabase("examen");
+//Create collection
+MongoCollection<Document> collection = database.getCollection("preguntas");
+
+//Create document
+Document pregunta = new Document("pregunta", "select-1")
+.append("tipo", "select")
+.append("titulo","¿Cuántos centímetros tiene un metro?");
+
+Document respuesta = new Document("h", 28)
+.append("0", 10)
+.append("1", 100)
+.append("2", 100);
+pregunta.put("respuesta", respuesta);
+
+//Insert document
+collection.insertOne(pregunta);
+
+//Search document
+Document myDoc = collection.find().first();
+
+//Send document
+response.setContentType("application/json");
+try (PrintWriter out = response.getWriter()) {
+out.println(myDoc.toJson());
+}
     }
 
     /**

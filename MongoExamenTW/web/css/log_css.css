@@ -1,6 +1,8 @@
 html,body {
     height: 100%;
     width:100%;
+    margin:0px;
+    padding:0px;
     background: #e6ffff; 
     background: linear-gradient(#e6ffff, #ccffff); 
 }
@@ -11,6 +13,16 @@ html,body {
 
 .btn-aux{
     width:48%;
+}
+
+
+.col-sm-4{
+    margin:0px;
+    padding: 0px;
+}
+
+.row{
+    margin:0px;
 }
 
 #loader {

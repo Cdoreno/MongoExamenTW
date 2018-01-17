@@ -26,8 +26,7 @@ import org.bson.Document;
  */
 public class InfoExam extends HttpServlet {
 
-    
-     @Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MongoClientURI uri = new MongoClientURI(
@@ -42,7 +41,7 @@ public class InfoExam extends HttpServlet {
 
 //Send document
         response.setContentType("application/json");
-        try (PrintWriter out = response.getWriter()){
+        try (PrintWriter out = response.getWriter()) {
             while (myDoc.hasNext()) {
                 out.println(myDoc.next().toJson());
             }
@@ -57,7 +56,7 @@ public class InfoExam extends HttpServlet {
 
     }
 
-     @Override
+    @Override
     public void init() {
         MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
@@ -82,8 +81,8 @@ public class InfoExam extends HttpServlet {
         pregunta.put("respuesta", respuesta);
         examenA.put("pregunta", pregunta);
         examenB.put("pregunta", pregunta);
-        
-        List <Document> docs = new ArrayList<Document>();
+
+        List<Document> docs = new ArrayList<Document>();
         docs.add(examenA);
         docs.add(examenB);
 

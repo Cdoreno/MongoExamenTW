@@ -11,7 +11,6 @@ function infoExam() {
     var mensaje = "Unknown error";
 
     var dni = $("#dni").val();
-    var password = $("#passwordLog").val();
 
     $.ajax({
         method: "GET",

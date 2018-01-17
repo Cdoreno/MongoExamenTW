@@ -26,7 +26,6 @@ public class ServletInicial extends HttpServlet {
         MongoDatabase database = mongoClient.getDatabase("examen");
 
         MongoCollection<Document> collection = database.getCollection("examenes");
-
 //Search document
         MongoCursor<Document> myDoc = collection.find().iterator();
 

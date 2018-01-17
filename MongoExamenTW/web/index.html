@@ -12,10 +12,11 @@
 
     </head>
     <body>
-
+        <div id="overlay"></div>
+        <div id="loader"></div>
         <!-- Title -->
         <h1 class="text-center" id="title">IES BORJA MOLL</h1>
-        <div id="loader"></div>
+
         <!-- Panel's log -->
         <div class="row">
             <div class="col-sm-4"></div>
@@ -23,13 +24,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center" id="title_panel"><h3>EXAM'S LOGIN</h3></div>
                     <div class="panel-body">
-                        <form class="form-signin">
+                        <form class="form-signin" onsubmit="return infoExam()">
                             <input type="text" placeholder="Introduce a DNI or NIE valid" class="form-control" size="10"  maxlength="9" id="dni" name="nif" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" title="Introduce a DNI or NIE valid" required>
                             <br>
-                            <div class="col-sm-4"><button class="btn btn-lg btn-primary" id="login" type="submit">Login</button></div>
-                            <div class="col-sm-4"></div>
+                            <button class="btn btn-lg btn-secondary btn-aux">View notes</button>
+                            <button class="btn btn-lg btn-primary btn-aux" id="login" type="submit">Login</button>
                         </form>
-                        <div class="col-sm-4"><button class="btn btn-lg btn-secondary">View notes</button></div>
+
                     </div>
                 </div>
             </div>

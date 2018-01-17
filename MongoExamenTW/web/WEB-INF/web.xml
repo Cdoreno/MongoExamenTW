@@ -4,16 +4,21 @@
         <servlet-name>ServletInicial</servlet-name>
         <servlet-class>ServletInicial</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InfoExam</servlet-name>
+        <servlet-class>Servlet.InfoExam</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletInicial</servlet-name>
         <url-pattern>/ServletInicial</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InfoExam</servlet-name>
+        <url-pattern>/InfoExam</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    <welcome-file-list>
-        <welcome-file>ServletInicial</welcome-file>
-    </welcome-file-list>
 </web-app>

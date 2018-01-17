@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Servlet;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -14,9 +20,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.bson.Document;
 
-public class ServletInicial extends HttpServlet {
+/**
+ *
+ * @author Ramon
+ */
+public class InfoExam extends HttpServlet {
 
-    @Override
+    
+     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         MongoClientURI uri = new MongoClientURI(
@@ -46,7 +57,7 @@ public class ServletInicial extends HttpServlet {
 
     }
 
-    @Override
+     @Override
     public void init() {
         MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
@@ -79,4 +90,5 @@ public class ServletInicial extends HttpServlet {
         //Insert document
         collection.insertMany(docs);
     }
+
 }

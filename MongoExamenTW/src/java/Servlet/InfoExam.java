@@ -41,10 +41,16 @@ public class InfoExam extends HttpServlet {
 
 //Send document
         response.setContentType("application/json");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter pw = response.getWriter()){
+            String docAux="[ ";
             while (myDoc.hasNext()) {
-                out.println(myDoc.next().toJson());
+                //pw.println(myDoc.next().toJson());
+                docAux+=myDoc.next().toJson();
+                docAux+=",";
             }
+            docAux = docAux.substring(0, docAux.length() - 1);
+            docAux+="]";
+            pw.println(docAux);
         } finally {
             myDoc.close();
         }
@@ -53,6 +59,8 @@ public class InfoExam extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String dni = request.getParameter("dni");
+        //COMPLETAR
 
     }
 

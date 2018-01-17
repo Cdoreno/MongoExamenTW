@@ -1,11 +1,60 @@
 html,body {
     height: 100%;
+    width:100%;
+    margin:0px;
+    padding:0px;
     background: #e6ffff; 
     background: linear-gradient(#e6ffff, #ccffff); 
 }
 
 *{
     font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.btn-aux{
+    width:48%;
+}
+
+
+.col-sm-4{
+    margin:0px;
+    padding: 0px;
+}
+
+.row{
+    margin:0px;
+}
+
+#loader {
+    display:none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    cursor: pointer;
 }
 
 #title{
@@ -17,24 +66,6 @@ html,body {
 
 #title_web{
     font-weight: bold;
-}
-
-#loader {
-    display:none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 1;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
-    width: 120px;
-    height: 120px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
 }
 
 @-webkit-keyframes spin {

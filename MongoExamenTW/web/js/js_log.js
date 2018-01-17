@@ -1,40 +1,35 @@
-var myVar;
-
-$(document).ready(function () {
-    $("#login").click(function () {
-        document.getElementById("loader").style.display = "block";
-        myVar = setTimeout(infoExam, 300);
-        infoExam();
-
-    });
-});
-
 function infoExam() {
 
     var url = "InfoExam";
     var emess = "Unknown error";
 
+    if (!($("#dni").val() === "")) {
+        $("#overlay").show();
+        $("#loader").show();
 
-    $.ajax({
-        url: url,
-        dataType: 'json',
-        success: function (jsn) {
-            alert(jsn);
-            $.each(jsn, function () {
-                var nameAux = this.nameExam;
-                alert(nameAux);
-                $("#selectExam").append("<option id=" + nameAux + "> Exam " + nameAux + "</option>");
-            });
-            document.getElementById("loader").style.display = "none";
-            $("#alert").modal();
-        },
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            success: function (jsn) {
+                $.each(jsn, function () {
+                    var nameAux = this.nameExam;
+                    $("#selectExam").append("<option id=" + nameAux + "> Exam " + nameAux + "</option>");
+                });
 
-        error: function (e) {
-            if (e["responseJSON"] === undefined){
-                document.getElementById("loader").style.display = "none";
-                alert(emess);
-            }else
-                alert(e["responseJSON"]["error"]);
-        }
-    });
+                $("#loader").hide();
+                $("#alert").modal();
+                $("#overlay").hide();
+            },
+
+            error: function (e) {
+                if (e["responseJSON"] === undefined) {
+                    alert(emess);
+                    $("#loader").hide();
+                    $("#overlay").hide();
+                } else
+                    alert(e["responseJSON"]["error"]);
+            }
+        });
+    }
+    return false;
 }

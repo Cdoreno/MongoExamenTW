@@ -53,7 +53,9 @@ public class InfoExam extends HttpServlet {
             pw.println(docAux);
         } finally {
             myDoc.close();
+            mongoClient.close();
         }
+         
     }
 
     @Override
@@ -96,6 +98,8 @@ public class InfoExam extends HttpServlet {
 
         //Insert document
         collection.insertMany(docs);
+        
+        mongoClient.close();
     }
 
 }

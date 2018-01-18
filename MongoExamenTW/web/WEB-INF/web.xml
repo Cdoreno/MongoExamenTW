@@ -8,6 +8,10 @@
         <servlet-name>QuestionLoader</servlet-name>
         <servlet-class>Servlet.QuestionLoader</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NotesServlet</servlet-name>
+        <servlet-class>Servlet.NotesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InfoExam</servlet-name>
         <url-pattern>/InfoExam</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>QuestionLoader</servlet-name>
         <url-pattern>/QuestionLoader</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotesServlet</servlet-name>
+        <url-pattern>/NotesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,3 +1,12 @@
+$(document).ready(function () {
+    $("#start").click(function () {
+
+    });
+    $("#cancel").click(function () {
+        $("#alert").modal("hide");
+    });
+});
+
 function infoExam() {
 
     var url = "InfoExam";
@@ -17,7 +26,7 @@ function infoExam() {
                 });
 
                 $("#loader").hide();
-                $("#alert").modal();
+                $("#alert").modal({backdrop: "static", keyboard: "false"});
                 $("#overlay").hide();
             },
 

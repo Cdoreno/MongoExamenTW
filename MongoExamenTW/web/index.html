@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
-        <title>Exam IES BORJA MOLL - LogIn</title>
+        <title>IES BORJA MOLL - Exámenes</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,14 +22,14 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center" id="title_panel"><h3>EXAM'S LOGIN</h3></div>
+                    <div class="panel-heading text-center" id="title_panel"><h3>SELECCIÓN DE EXAMEN</h3></div>
                     <div class="panel-body">
                         <form class="form-signin" onsubmit="return infoExam()">
-                            <input type="text" placeholder="Introduce a DNI or NIE valid" class="form-control" size="10"  maxlength="9" id="dni" name="nif" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" title="Introduce a DNI or NIE valid" required>
+                            <input type="text" placeholder="Introduce a DNI or NIE valid" class="form-control" size="10"  maxlength="9" id="dni" name="nif" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))" title="Introduce un DNI o NIEW válido." required>
                             <br>
                             <div class="text-center">
-                                <button class="btn btn-lg btn-secondary btn-aux ">View notes</button>
-                                <button class="btn btn-lg btn-primary  btn-aux" id="login" type="submit">Login</button>
+                                <button class="btn btn-lg btn-secondary btn-aux ">Ver notas</button>
+                                <button class="btn btn-lg btn-primary  btn-aux" id="login" type="submit">Iniciar sesión</button>
                             </div>
                         </form>
 
@@ -46,18 +46,20 @@
                 <div class="panel panel-default panel-modal" id="configurationPanel">
                     <div class="panel-body">
                         <div class="well">
-                            <p>Welcome </p>
-                            <p>Please, choose the exam's type for do it.</p>
+                            <p>Bienvenido </p>
+                            <p>Por favor, elija el tipo de examen para hacer</p>
                         </div>
-                        <select class="form-control" id="selectExam"> </select>
+                        <select class="form-control" id="selectExam">
+                            <option id="-1" selected disabled>Seleccione un exámen...</option>
+                        </select>
                     </div>
                     <div class="panel-footer">
                         <div class="btn-group btn-group-justified">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-secondary" id="cancelConfig">Cancel</button>
+                                <button type="button" class="btn btn-secondary" id="cancel">Cancelar</button>
                             </div>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-primary" id="saveConfig">Start Exam</button>
+                                <button type="button" class="btn btn-primary" id="start">Iniciar exámen</button>
                             </div>
                         </div>
                     </div>

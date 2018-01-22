@@ -10,7 +10,7 @@ $(document).ready(function () {
 function infoExam() {
 
     var url = "InfoExam";
-    var emess = "Unknown error";
+    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
 
     if (!($("#dni").val() === "")) {
         $("#overlay").show();
@@ -21,7 +21,7 @@ function infoExam() {
             method: "POST",
             data: {dni: dni},
             success: function (jsn) {
-                if (u["mess"] === "No tienes examenes disposibles.") {
+                if (jsn["mess"] === "No tienes examenes disposibles.") {
                     $("#alert").modal("hide");
                     $("#dni").focus();
                 } else {

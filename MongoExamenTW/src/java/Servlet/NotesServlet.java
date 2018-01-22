@@ -61,8 +61,8 @@ public class NotesServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String dni = request.getParameter("dni");
-        String examName = request.getParameter("examName");
-        String notaValor = request.getParameter("nota");
+        String examName = request.getParameter("nameExam");
+        String respUser = request.getParameter("respuestas");//ARRAY???????????????????????????????????
         
          MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
@@ -72,9 +72,11 @@ public class NotesServlet extends HttpServlet {
 
         MongoCollection<Document> collection = database.getCollection("notas");
 
+        int notaValor = calcularNota(respUser);
+        
         //Crear notas
         Document nota = new Document("dni", dni)
-                .append("examName", examName)
+                .append("nameExam", examName)
                 .append("nota", notaValor);
      
         //Insert document
@@ -82,6 +84,10 @@ public class NotesServlet extends HttpServlet {
 
         mongoClient.close();
         
+    }
+    
+    private int calcularNota(String s){
+        return 0;
     }
 
 }

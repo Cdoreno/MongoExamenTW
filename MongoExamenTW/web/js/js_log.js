@@ -10,35 +10,40 @@ $(document).ready(function () {
 function infoExam() {
 
     var url = "InfoExam";
-    var emess = "Unknown error";
+    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
 
     if (!($("#dni").val() === "")) {
         $("#overlay").show();
         $("#loader").show();
-
+        var dni = $("#dni").val();
         $.ajax({
             url: url,
-            dataType: 'json',
+            method: "POST",
+            data: {dni: dni},
             success: function (jsn) {
-                $.each(jsn, function () {
-                    var nameAux = this.nameExam;
-                    $("#selectExam").append("<option id=" + nameAux + "> Exam " + nameAux + "</option>");
-                });
-
-                $("#loader").hide();
-                $("#alert").modal({backdrop: "static", keyboard: "false"});
-                $("#overlay").hide();
-            },
-
-            error: function (e) {
-                if (e["responseJSON"] === undefined) {
-                    alert(emess);
+                if (jsn["mess"] === "No tienes examenes disposibles.") {
+                    $("#alert").modal("hide");
+                    $("#dni").focus();
+                } else {
+                    $.each(jsn, function () {
+                        var nameAux = this.nameExam;
+                        $("#selectExam").append("<option id=" + nameAux + "> Exam " + nameAux + "</option>");
+                    });
+                    $("#alert").modal({backdrop: "static", keyboard: "false"});
                     $("#loader").hide();
                     $("#overlay").hide();
+                }
+            },
+            error: function (e) {
+                if (e["responseJSON"] === undefined) {
+                    $("#loader").hide();
+                    $("#overlay").hide();
+                    alert(emess);
                 } else
                     alert(e["responseJSON"]["error"]);
             }
         });
+
     }
     return false;
 }

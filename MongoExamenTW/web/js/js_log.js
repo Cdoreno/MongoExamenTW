@@ -21,9 +21,11 @@ function infoExam() {
             method: "POST",
             data: {dni: dni},
             success: function (jsn) {
-                if (jsn["mess"] === "No tienes examenes disposibles.") {
-                    $("#alert").modal("hide");
+                if (jsn["mess"] === "No tienes examenes disponibles.") {
+                    $("#loader").hide();
+                    $("#overlay").hide();
                     $("#dni").focus();
+                    alert(jsn["mess"]);
                 } else {
                     $.each(jsn, function () {
                         var nameAux = this.nameExam;

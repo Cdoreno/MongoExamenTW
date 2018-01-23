@@ -161,14 +161,16 @@ public class InfoExam extends HttpServlet {
         //Crear array preguntas !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         List<Document> preguntasA = new ArrayList<>();
         preguntasA.add(pregunta1);
+        preguntasA.add(pregunta2);
+        preguntasA.add(pregunta3);
+        preguntasA.add(pregunta4);
+        preguntasA.add(pregunta5);
 
         List<Document> preguntasB = new ArrayList<>();
         preguntasB.add(pregunta2);
 
         List<Document> preguntasC = new ArrayList<>();
         preguntasC.add(pregunta3);
-        preguntasC.add(pregunta2);
-        preguntasC.add(pregunta1);
 
         //Añadir array preguntas a los examenes
         examenA.append("preguntas", preguntasA);
@@ -235,7 +237,7 @@ public class InfoExam extends HttpServlet {
             while (myDoc.hasNext()) {
                 switch (myDoc.next().toJson()) {
                     case "{ \"nameExam\" : \"A\" }":
-                        examsName.remove(examsName.indexOf("A"));
+                       examsName.remove(examsName.indexOf("A"));
                         break;
                     case "{ \"nameExam\" : \"B\" }":
                         examsName.remove(examsName.indexOf("B"));

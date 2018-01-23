@@ -33,7 +33,7 @@ public class QuestionLoader extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //String dni = (String) request.getAttribute("dni"); ESTO EN TEOIA NO LO NECESITO PARA CAGAR LAS PREGUNTAS DEL EXAMEN
-        String examName = "C";//(String) request.getAttribute("examName"); CAMBIAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        String examName = "A";//(String) request.getAttribute("examName"); CAMBIAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
@@ -63,16 +63,14 @@ public class QuestionLoader extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //REVISAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         String examName = request.getParameter("nameExam");
         String dni = request.getParameter("dni");
 
         request.setAttribute("dni", dni);
         request.setAttribute("examName", examName);
 
-        RequestDispatcher a = request.getRequestDispatcher("/index.html");
+        RequestDispatcher a = request.getRequestDispatcher("/exam.jsp");
         a.forward(request, response);
-
     }
 
 }

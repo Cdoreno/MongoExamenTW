@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#start").click(function () {
-
+        typeExam();
     });
     $("#cancel").click(function () {
         $("#alert").modal("hide");
@@ -46,6 +46,43 @@ function infoExam() {
                     alert(e["responseJSON"]["error"]);
             }
         });
+    }
+    return false;
+}
+
+function typeExam() {
+
+    var url = "QuestionLoader";
+    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
+
+    var dni = $("#dni").val();
+    var examType = $("#selectExam option:selected").attr("id")
+
+    if (dni !== null && examType !== "-1") {
+        $("#overlay").show();
+        $("#loader").show();
+        $("#alert").modal("hide");
+
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {dni: dni, nameExam: examType},
+            success: function () {
+
+            },
+            error: function (e) {
+                if (e["responseJSON"] === undefined) {
+                    $("#loader").hide();
+                    $("#overlay").hide();
+                    alert(emess);
+                } else
+                    alert(e["responseJSON"]["error"]);
+            }
+        });
+
+
+    } else {
+        alert("No tiene seleccionado ningún examen.");
     }
     return false;
 }

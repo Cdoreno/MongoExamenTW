@@ -10,6 +10,9 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Projections.excludeId;
+import static com.mongodb.client.model.Projections.fields;
+import static com.mongodb.client.model.Projections.include;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,14 +40,14 @@ public class NotesServlet extends HttpServlet {
 
         MongoCollection<Document> collection = database.getCollection("notas");
         //Search document
-        MongoCursor<Document> myDoc = collection.find().iterator();
+        MongoCursor<Document> myDoc = collection.find().projection(fields(include("dni","nameExam","nota"), excludeId())).iterator();
 
         //Send document
         response.setContentType("application/json");
         try (PrintWriter pw = response.getWriter()) {
             String docAux = "[ ";
             while (myDoc.hasNext()) {
-                docAux += myDoc.next().toJson();
+                docAux += this.enmascararDni(myDoc.next().toJson());
                 docAux += ",";
             }
             docAux = docAux.substring(0, docAux.length() - 1);
@@ -88,6 +91,10 @@ public class NotesServlet extends HttpServlet {
     
     private int calcularNota(String s){
         return 0;
+    }
+    
+    private String enmascararDni(String s){
+        return s.replace(s.substring(11, 15),"****");
     }
 
 }

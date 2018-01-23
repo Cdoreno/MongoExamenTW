@@ -8,7 +8,8 @@ $(document).ready(function () {
 });
 
 function infoExam() {
-
+    $("#selectExam").text("");
+    $("#selectExam").append("<option id=\"-1\" selected disabled>Seleccione un examen...</option>");
     var url = "InfoExam";
     var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
 
@@ -29,7 +30,7 @@ function infoExam() {
                 } else {
                     $.each(jsn, function () {
                         var nameAux = this.nameExam;
-                        $("#selectExam").append("<option id=" + nameAux + "> Exam " + nameAux + "</option>");
+                        $("#selectExam").append("<option id=" + nameAux + "> Examen " + nameAux + "</option>");
                     });
                     $("#alert").modal({backdrop: "static", keyboard: "false"});
                     $("#loader").hide();
@@ -45,7 +46,6 @@ function infoExam() {
                     alert(e["responseJSON"]["error"]);
             }
         });
-
     }
     return false;
 }

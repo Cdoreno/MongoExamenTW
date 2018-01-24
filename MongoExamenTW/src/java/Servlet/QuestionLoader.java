@@ -33,8 +33,8 @@ public class QuestionLoader extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String examName = (String) request.getAttribute("examName");
-
+//        String examName = (String) request.getAttribute("examName");
+        String examName = "A";
         MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
         MongoClient mongoClient = new MongoClient(uri);
@@ -75,5 +75,4 @@ public class QuestionLoader extends HttpServlet {
         response.addCookie(dniCookie);
         response.addCookie(examCookie);
     }
-
 }

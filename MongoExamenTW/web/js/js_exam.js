@@ -53,20 +53,20 @@ function loadExam() {
 
 }
 
-function sendNotes() {
-    var url = "NotesServlet";
-    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
-
-    var respuestas = [];
-
-    $.each()
-    )
-
-
-    $.ajax({
-    url: url,
-            data: {respuestas:respuestas},
-    }
+//function sendNotes() {
+//    var url = "NotesServlet";
+//    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
+//
+//    var respuestas = [];
+//
+//    $.each()
+//    )
+//
+//
+//    $.ajax({
+//    url: url,
+//            data: {respuestas:respuestas},
+//    }
 
 
     function loadSelect(id, titulo) {

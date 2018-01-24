@@ -24,13 +24,13 @@ function loadExam() {
                         loadRadio(pregunta.id, pregunta.preguntaTexto);
                         loadRadioResp(pregunta.id, pregunta.respOpciones);
                         break;
-                    case "select multiple":
+                    case "multiple":
                         loadMultiple(pregunta.id, pregunta.preguntaTexto);
                         loadMultipleResp(pregunta.id, pregunta.respOpciones);
                         break;
                     case "checkbox":
                         loadCheckbox(pregunta.id, pregunta.preguntaTexto);
-                        loadCheckbox(pregunta.id, pregunta.respOpciones);
+                        loadCheckboxResp(pregunta.id, pregunta.respOpciones);
                         break;
                 }
             }
@@ -53,8 +53,19 @@ function loadExam() {
 
 }
 
+//function sendNotes() {
+//    var url = "NotesServlet";
+//    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
+//
+//
+//
+//    $.ajax({
+//    url: url,
+//            data: {dni: dni, nameExam: examType},
+//    }
 
-function loadSelect(id, titulo) {
+
+    function loadSelect(id, titulo) {
     $("#examen").append("<div class=\"panel panel-primary form-group\">\n" +
             "                        <div class=\"panel-heading\">\n" +
             "                            <h4>" + titulo + "</h4>\n" +

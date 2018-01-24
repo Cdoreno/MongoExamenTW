@@ -33,6 +33,7 @@ public class QuestionLoader extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String cookieExam = "examName";
         Cookie[] cookies = request.getCookies();
         String examC = null;
@@ -48,7 +49,7 @@ public class QuestionLoader extends HttpServlet {
                 examC="A";
             } 
         }
-        
+   
         MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
         MongoClient mongoClient = new MongoClient(uri);
@@ -88,5 +89,4 @@ public class QuestionLoader extends HttpServlet {
         response.addCookie(dniCookie);
         response.addCookie(examCookie);
     }
-
 }

@@ -21,7 +21,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/js_exam.js"></script>
-
     </head>
     <body>
         <div id="overlay"></div>
@@ -29,30 +28,15 @@
         <div class="row">
             <h1 class="text-center" id="title">CUESTIONARIO</h1>
         </div>
-
         <div class="container">
             <div class="col-md-2">
             </div>
-
             <div class="col-md-8">
                 <form id="examen">
-                    
-
-                    
-
-
-                    
-
-
-
-
-
                 </form>
             </div>
-
             <div class="col-md-2">
             </div>
         </div>
-
     </body>
 </html>

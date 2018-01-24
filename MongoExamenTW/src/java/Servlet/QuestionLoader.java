@@ -45,9 +45,6 @@ public class QuestionLoader extends HttpServlet {
                     examC = cookie.getValue();
                 }
             }
-            if (examC == null) {
-                examC="A";
-            } 
         }
    
         MongoClientURI uri = new MongoClientURI(

@@ -53,20 +53,24 @@ function loadExam() {
 
 }
 
-//function sendNotes() {
-//    var url = "NotesServlet";
-//    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
-//
-//
-//
-//    $.ajax({
-//    url: url,
-//            data: {dni: dni, nameExam: examType},
-//    }
+function sendNotes() {
+    var url = "NotesServlet";
+    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
+
+    var respuestas = [];
+
+    $.each()
+    )
+
+
+    $.ajax({
+    url: url,
+            data: {respuestas:respuestas},
+    }
 
 
     function loadSelect(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group\">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group select\">\n" +
             "                        <div class=\"panel-heading\">\n" +
             "                            <h4>" + titulo + "</h4>\n" +
             "                        </div>\n" +
@@ -87,7 +91,7 @@ function loadSelectResp(id, respOpciones) {
 }
 
 function loadText(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group\">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group text\">\n" +
             "    <div class=\"panel-heading\">\n" +
             "        <h4>" + titulo + "</h4>\n" +
             "    </div>\n" +
@@ -98,7 +102,7 @@ function loadText(id, titulo) {
 }
 
 function loadRadio(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group\">\n"
+    $("#examen").append("<div class=\"panel panel-primary form-group radio\">\n"
             + "                        <div class=\"panel-heading\">\n"
             + "                            <h4>" + titulo + "</h4>\n"
             + "                        </div>\n"
@@ -118,7 +122,7 @@ function loadRadioResp(id, respOpciones) {
 }
 
 function loadMultiple(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group\">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group multiple\">\n" +
             "                        <div class=\"panel-heading\">\n" +
             "                            <h4>" + titulo + "</h4>\n" +
             "                        </div>\n" +
@@ -137,7 +141,7 @@ function loadMultipleResp(id, respOpciones) {
 }
 
 function loadCheckbox(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group\">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group checkbox\">\n" +
             "                        <div class=\"panel-heading\">\n" +
             "                            <h4>" + titulo + "</h4>\n" +
             "                        </div>\n" +
@@ -165,7 +169,7 @@ function loadButtonSubmit() {
             "                            </div>\n" +
             "                            <div class=\"col-md-6\">\n" +
             "                                <button type=\"button\" class=\"btn btn-success btn-sm btn-block\">\n" +
-            "                                    <span class=\"fa fa-send\"></span>Submit</button>\n" +
+            "                                    <span class=\"fa fa-send\"></span>Enviar resultados</button>\n" +
             "                            </div>\n" +
             "                        </div>\n" +
             "                    </div>");

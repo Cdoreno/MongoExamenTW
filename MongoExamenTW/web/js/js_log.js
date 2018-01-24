@@ -5,6 +5,9 @@ $(document).ready(function () {
     $("#cancel").click(function () {
         $("#alert").modal("hide");
     });
+    $("#verNotas").click(function () {
+        window.location.replace("notes.jsp");
+    });
 });
 
 function infoExam() {

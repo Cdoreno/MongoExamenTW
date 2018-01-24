@@ -111,12 +111,8 @@ public class InfoExam extends HttpServlet {
         //Crear preguntas
         Document pregunta1 = new Document("id", "p1")
                 .append("tipoPregunta", "select")
-                .append("preguntaTexto", "Si explota un avión, ¿por dónde saldrías?");
-
-        Document respuesta1 = new Document("0", "a) Por la puerta de emergencia")
-                .append("1", "b) Por una ventanilla")
-                .append("2", "c) Por las noticias");
-        pregunta1.append("respOpciones", respuesta1);
+                .append("preguntaTexto", "Si explota un avión, ¿por dónde saldrías?")
+                .append("respOpciones", Arrays.asList("a) Por la puerta de emergencia","b) Por una ventanilla","c) Por las noticias"));
 
         Document pregunta2 = new Document("id", "p2")
                 .append("tipoPregunta", "text")
@@ -124,44 +120,23 @@ public class InfoExam extends HttpServlet {
 
         Document pregunta3 = new Document("id", "p3")
                 .append("tipoPregunta", "radio")
-                .append("preguntaTexto", "¿Qué es lo primero que hace una vaca cuando sale el Sol?");
-
-        Document respuesta3 = new Document("0", "a) Ir a pastar")
-                .append("1", "b) Sombra")
-                .append("2", "c) Dormir");
-        pregunta3.append("respOpciones", respuesta3);
+                .append("preguntaTexto", "¿Qué es lo primero que hace una vaca cuando sale el Sol?")
+                .append("respOpciones", Arrays.asList("a) Ir a pastar","b) Sombra","c) Dormir"));
 
         Document pregunta4 = new Document("id", "p4")
-                .append("tipoPregunta", "select multiple")
-                .append("preguntaTexto", "¿Cómo se llaman los tres chinos más pobres?");
-
-        Document respuesta4 = new Document("0", "a) Chin lu")
-                .append("1", "b) Chin gas")
-                .append("2", "c) Chin pon")
-                .append("3", "d) Chin agua");
-        pregunta4.append("respOpciones", respuesta4);
+                .append("tipoPregunta", "multiple")
+                .append("preguntaTexto", "¿Cómo se llaman los tres chinos más pobres?")
+                .append("respOpciones", Arrays.asList("a) Chin lu","b) Chin gas","c) Chin pon","d) Chin agua"));
 
         Document pregunta5 = new Document("id", "p5")
                 .append("tipoPregunta", "checkbox")
-                .append("preguntaTexto", "Laura, la madre de Lola, tiene 5 hijas. Cuatro de ellas se llaman Lala, Lele, Lili, Lolo. ¿Cuáles son los nombres de las 5 hermanas?");
-
-        Document respuesta5 = new Document("0", "a) Laura")
-                .append("1", "b) Lola")
-                .append("2", "c) Lala")
-                .append("3", "d) Lele")
-                .append("4", "e) Lili")
-                .append("5", "f) Lolo")
-                .append("6", "g) Lulu");
-        pregunta5.append("respOpciones", respuesta5);
+                .append("preguntaTexto", "Laura, la madre de Lola, tiene 5 hijas. Cuatro de ellas se llaman Lala, Lele, Lili, Lolo. ¿Cuáles son los nombres de las 5 hermanas?")
+                .append("respOpciones", Arrays.asList("a) Laura","b) Lola","c) Lala","d) Lele","e) Lili","f) Lolo","g) Lulu"));
 
         Document pregunta6 = new Document("id", "p6")
                 .append("tipoPregunta", "select")
-                .append("preguntaTexto", "Si hay un incendio en el zoo, ¿quién tiene la culpa?");
-
-        Document respuesta6 = new Document("0", "a) Los leones")
-                .append("1", "b) Las llamas")
-                .append("2", "c) Los osos polares");
-        pregunta6.append("respOpciones", respuesta6);
+                .append("preguntaTexto", "Si hay un incendio en el zoo, ¿quién tiene la culpa?")
+                .append("respOpciones", Arrays.asList("a) Los leones","b) Las llamas","c) Los osos polares"));
 
         Document pregunta7 = new Document("id", "p7")
                 .append("tipoPregunta", "text")
@@ -169,34 +144,18 @@ public class InfoExam extends HttpServlet {
 
         Document pregunta8 = new Document("id", "p8")
                 .append("tipoPregunta", "radio")
-                .append("preguntaTexto", "¿Qué es más rápido en la sabana?");
-
-        Document respuesta8 = new Document("0", "a) Un guepardo")
-                .append("1", "b) Un jaguar")
-                .append("2", "c) El correcaminos")
-                .append("3", "d) Una jirafa en un ferrari");
-        pregunta8.append("respOpciones", respuesta8);
+                .append("preguntaTexto", "¿Qué es más rápido en la sabana?")
+                .append("respOpciones", Arrays.asList("a) Un guepardo","b) Un jaguar","c) El correcaminos","d) Una jirafa en un ferrari"));
 
         Document pregunta9 = new Document("id", "p9")
-                .append("tipoPregunta", "select multiple")
-                .append("preguntaTexto", "Este banco está ocupado, por un padre y un hijo, el padre se llama Juan y el hijo ya te lo he dicho. ¿Quiénes están sentados en el banco?");
-
-        Document respuesta9 = new Document("0", "a) Juan")
-                .append("1", "b) El banco está pintado, no hay nadie sentado")
-                .append("2", "c) Una señora alimentando palomas")
-                .append("3", "d) Esteban")
-                .append("4", "e) Carlos");
-        pregunta9.append("respOpciones", respuesta9);
+                .append("tipoPregunta", "multiple")
+                .append("preguntaTexto", "Este banco está ocupado, por un padre y un hijo, el padre se llama Juan y el hijo ya te lo he dicho. ¿Quiénes están sentados en el banco?")
+                .append("respOpciones", Arrays.asList("a) Juan","b) El banco está pintado, no hay nadie sentado","c) Una señora alimentando palomas","d) Esteban","e) Carlos"));
 
         Document pregunta10 = new Document("id", "p10")
                 .append("tipoPregunta", "checkbox")
-                .append("preguntaTexto", "Valore este examen (sabiendo que una mala valoración podría bajar su nota...)");
-
-        Document respuesta10 = new Document("0", "a) Es genial")
-                .append("1", "b) Increíble")
-                .append("2", "c) Malísimo (PISTA: Esta no la marques...)");
-
-        pregunta10.append("respOpciones", respuesta10);
+                .append("preguntaTexto", "Valore este examen (sabiendo que una mala valoración podría bajar su nota...)")
+                .append("respOpciones",Arrays.asList("a) Es genial","b) Increíble","c) Malísimo (PISTA: Esta no la marques...)"));
 
         //Crear array preguntas !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         List<Document> preguntasA = new ArrayList<>();

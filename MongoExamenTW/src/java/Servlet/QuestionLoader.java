@@ -33,8 +33,22 @@ public class QuestionLoader extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String examName = (String) request.getAttribute("examName");
+        String cookieExam = "examName";
+        Cookie[] cookies = request.getCookies();
+        String examC = null;
 
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie cookie = cookies[i];
+                if (cookieExam.equals(cookie.getName())) {
+                    examC = cookie.getValue();
+                }
+            }
+            if (examC == null) {
+                examC="A";
+            } 
+        }
+        
         MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
         MongoClient mongoClient = new MongoClient(uri);
@@ -43,9 +57,9 @@ public class QuestionLoader extends HttpServlet {
 
         MongoCollection<Document> collection = database.getCollection("examenes");
 
-        try (PrintWriter pw = response.getWriter()) {
+       try (PrintWriter pw = response.getWriter()) {
             //Search document       
-            Document myDoc = collection.find(eq("nameExam", examName)).projection(fields(include("preguntas"), excludeId())).first();
+            Document myDoc = collection.find(eq("nameExam", examC)).projection(fields(include("preguntas"), excludeId())).first();
             String docAux = myDoc.toJson();
 
             docAux = docAux.substring(16, docAux.length() - 1);
@@ -54,7 +68,6 @@ public class QuestionLoader extends HttpServlet {
 
             pw.println(docAux);
         } finally {
-
             mongoClient.close();
         }
 

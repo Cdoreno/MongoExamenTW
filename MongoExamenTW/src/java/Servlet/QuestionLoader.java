@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,8 +33,7 @@ public class QuestionLoader extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //String dni = (String) request.getAttribute("dni"); ESTO EN TEOIA NO LO NECESITO PARA CAGAR LAS PREGUNTAS DEL EXAMEN
-        String examName = "A";//(String) request.getAttribute("examName"); CAMBIAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        String examName = (String) request.getAttribute("examName");
 
         MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
@@ -66,11 +66,14 @@ public class QuestionLoader extends HttpServlet {
         String examName = request.getParameter("nameExam");
         String dni = request.getParameter("dni");
 
-        request.setAttribute("dni", dni);
-        request.setAttribute("examName", examName);
-
-        RequestDispatcher a = request.getRequestDispatcher("/exam.jsp");
-        a.forward(request, response);
+        Cookie dniCookie = new Cookie("dni", dni);
+        Cookie examCookie = new Cookie("examName", examName);
+        dniCookie.setMaxAge(5);
+        examCookie.setMaxAge(5);
+        dniCookie.setPath("/");
+        examCookie.setPath("/");
+        response.addCookie(dniCookie);
+        response.addCookie(examCookie);
     }
 
 }

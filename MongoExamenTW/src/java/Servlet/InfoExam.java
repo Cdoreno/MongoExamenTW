@@ -164,12 +164,36 @@ public class InfoExam extends HttpServlet {
         preguntasA.add(pregunta3);
         preguntasA.add(pregunta4);
         preguntasA.add(pregunta5);
+        preguntasA.add(pregunta6);
+        preguntasA.add(pregunta7);
+        preguntasA.add(pregunta8);
+        preguntasA.add(pregunta9);
+        preguntasA.add(pregunta10);
 
         List<Document> preguntasB = new ArrayList<>();
+        preguntasB.add(pregunta1);
+        preguntasB.add(pregunta6);
         preguntasB.add(pregunta2);
+        preguntasB.add(pregunta7);
+        preguntasB.add(pregunta3);
+        preguntasB.add(pregunta8);
+        preguntasB.add(pregunta4);
+        preguntasB.add(pregunta9);
+        preguntasB.add(pregunta5);
+        preguntasB.add(pregunta10);
 
         List<Document> preguntasC = new ArrayList<>();
+        preguntasC.add(pregunta9);
+        preguntasC.add(pregunta7);
+        preguntasC.add(pregunta5);
         preguntasC.add(pregunta3);
+        preguntasC.add(pregunta1);
+        preguntasC.add(pregunta2);       
+        preguntasC.add(pregunta4);
+        preguntasC.add(pregunta5);
+        preguntasC.add(pregunta6);      
+        preguntasC.add(pregunta8);      
+        preguntasC.add(pregunta10);
 
         //Añadir array preguntas a los examenes
         examenA.append("preguntas", preguntasA);

@@ -63,8 +63,10 @@ public class NotesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String dni = request.getParameter("dni");
-        String examName = request.getParameter("nameExam");
+//        String dni = request.getParameter("dni");
+//        String examName = request.getParameter("nameExam");
+String examName = (String) request.getAttribute("examName");
+String dni = (String) request.getAttribute("dni");
         String respUser = request.getParameter("respuestas");//ARRAY???????????????????????????????????
         
          MongoClientURI uri = new MongoClientURI(

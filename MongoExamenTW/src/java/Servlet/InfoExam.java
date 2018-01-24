@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +32,45 @@ import org.bson.Document;
  * @author Ramon
  */
 public class InfoExam extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String cookieDni = "dni";
+        String cookieExam = "examName";
+        Cookie[] cookies = request.getCookies();
+
+        String dniC = null;
+        String examC = null;
+
+        if (cookies != null) {
+
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie cookie = cookies[i];
+                if (cookieDni.equals(cookie.getName())) {
+                    dniC = cookie.getValue();
+                }
+                if (cookieExam.equals(cookie.getName())) {
+                    examC = cookie.getValue();
+                }
+            }
+            if (dniC == null || examC == null) {
+                RequestDispatcher a = request.getRequestDispatcher("/index.html");
+                a.forward(request, response);
+            } else {
+                request.setAttribute("dni", dniC);
+                request.setAttribute("examName", examC);
+
+                RequestDispatcher a = request.getRequestDispatcher("/exam.jsp");
+                a.forward(request, response);
+            }
+
+        } else {
+            RequestDispatcher a = request.getRequestDispatcher("/index.html");
+            a.forward(request, response);
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -237,7 +277,7 @@ public class InfoExam extends HttpServlet {
             while (myDoc.hasNext()) {
                 switch (myDoc.next().toJson()) {
                     case "{ \"nameExam\" : \"A\" }":
-                       examsName.remove(examsName.indexOf("A"));
+                        examsName.remove(examsName.indexOf("A"));
                         break;
                     case "{ \"nameExam\" : \"B\" }":
                         examsName.remove(examsName.indexOf("B"));

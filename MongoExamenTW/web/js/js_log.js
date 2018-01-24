@@ -68,7 +68,7 @@ function typeExam() {
             method: "POST",
             data: {dni: dni, nameExam: examType},
             success: function () {
-
+                location.reload();
             },
             error: function (e) {
                 if (e["responseJSON"] === undefined) {

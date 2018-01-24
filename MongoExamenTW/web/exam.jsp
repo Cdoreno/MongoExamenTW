@@ -5,6 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% String examName = (String) request.getAttribute("examName");
+String dni = (String) request.getAttribute("dni");
+%>
+<% if(examName==null || dni==null){
+    response.sendRedirect("index.html");
+}%>
 <html lang="es">
     <head>
         <title>IES BORJA MOLL - Examen</title>

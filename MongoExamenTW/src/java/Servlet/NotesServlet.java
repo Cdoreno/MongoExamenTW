@@ -86,7 +86,7 @@ String dni = (String) request.getAttribute("dni");
         //Crear notas
         Document nota = new Document("dni",dni )
                 .append("nameExam", examName)
-                .append("nota", "9");
+                .append("nota", notaValor);
      
         //Insert document
         MongoCursor<Document> myDocAux = collection.find(and(eq("dni", dni),eq("nameExam",examName))).iterator();

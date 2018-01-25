@@ -89,11 +89,11 @@ html,body {
     background-color: navy;
 }
 
-.panel-body{
+.panel-body,.modal-footer{
     background-color: #a8dcf0;
 }
 
-.form-control{
+.form-control,.modal-body{
     background-color: #e6f9ff;
     color:navy;
 }
@@ -103,8 +103,20 @@ html,body {
     background-color: white;
 }
 
+.btn-secondary:hover{
+    color:navy;
+    background-color: gray;
+    background: linear-gradient(lightgray,gray);
+}
+
 .btn-primary,.btn-success{
     background-color: navy;
+}
+
+.btn-primary:hover,.btn-success:hover{
+    color:white;
+    background-color: darkblue;
+    background: linear-gradient(blue, darkblue);
 }
 
 .panel-footer{
@@ -124,6 +136,17 @@ html,body {
     margin:0;
 }
 
+#okModal{
+    min-width: 200px;
+    margin:auto;
+}
+
+.modal{
+    margin-top: 25px;
+}
+.modal-footer{
+    text-align: center;
+}
 @-webkit-keyframes animatebottom {
     from { bottom:-100px; opacity:0 } 
     to { bottom:0px; opacity:1 }

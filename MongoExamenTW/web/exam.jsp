@@ -34,6 +34,44 @@
             <div class="col-md-8">
                 <form id="examen">
                 </form>
+
+                <div class="modal fade" id="notaModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">     
+                            <div class="modal-body text-center">
+                                <div>
+                                    <p id="parrafoNotaModal"></p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button class="btn btn-secondary" type="button" id="verNotas">Ver notas</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary" id="login" type="button">Inicio</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="alertModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">     
+                            <div class="modal-body text-center">
+                                <div id="parrafosAbout">
+                                    <p id="pModal"></p>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-primary" id="okModal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="col-md-2">
             </div>

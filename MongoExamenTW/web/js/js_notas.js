@@ -12,6 +12,9 @@ $(document).ready(function () {
         window.location.replace("InfoExam");
     });
     loadNotas();
+        $("#okModal").click(function () {
+        $("#alertModal").modal('hide');
+    });
 });
 
 function loadNotas() {
@@ -37,13 +40,18 @@ function loadNotas() {
         },
         error: function (e) {
             if (e["responseJSON"] === undefined)
-                alert(emess);
+                showAlert(emess);
             else
-                alert(e["responseJSON"]["error"]);
+                showAlert(e["responseJSON"]["error"]);
             $("#loader").hide();
             $("#overlay").hide();
         }
     });
 
 
+}
+
+function showAlert(text) {
+    $("#pModal").text(text);
+    $("#alertModal").modal({backdrop: "static", keyboard: "false"});
 }

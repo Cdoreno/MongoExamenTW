@@ -12,6 +12,10 @@
         <servlet-name>NotesServlet</servlet-name>
         <servlet-class>Servlet.NotesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CorrectNotes</servlet-name>
+        <servlet-class>Servlet.CorrectNotes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InfoExam</servlet-name>
         <url-pattern>/InfoExam</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>NotesServlet</servlet-name>
         <url-pattern>/NotesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CorrectNotes</servlet-name>
+        <url-pattern>/CorrectNotes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

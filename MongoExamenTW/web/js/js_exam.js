@@ -3,6 +3,8 @@ var respuestas = [];
 $(document).ready(function () {
     $("#overlay").show();
     $("#loader").show();
+
+
     loadExam();
 });
 
@@ -55,24 +57,12 @@ function loadExam() {
 
 }
 
-//function sendNotes() {
-//    var url = "NotesServlet";
-//    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
-//
-//    var respuestas = [];
-//
-//    $.each()
-//    )
-//
-//
-//    $.ajax({
-//    url: url,
-//            data: {respuestas:respuestas},
-//    }
+function sendNotes() {
 
+}
 
 function loadSelect(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group select\">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group pregunta select\">\n" +
             "                        <div class=\"panel-heading\">\n" +
             "                            <h4>" + titulo + "</h4>\n" +
             "                        </div>\n" +
@@ -93,7 +83,7 @@ function loadSelectResp(id, respOpciones) {
 }
 
 function loadText(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group text\">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group pregunta text\">\n" +
             "    <div class=\"panel-heading\">\n" +
             "        <h4>" + titulo + "</h4>\n" +
             "    </div>\n" +
@@ -104,29 +94,31 @@ function loadText(id, titulo) {
 }
 
 function loadRadio(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group\">\n"
+    $("#examen").append("<div class=\"panel panel-primary form-group pregunta\">\n"
             + "                        <div class=\"panel-heading\">\n"
             + "                            <h4>" + titulo + "</h4>\n"
             + "                        </div>\n"
             + "                        <div class=\"panel-body radio\" id =" + id + ">\n"
+
+
             + "                        </div>\n"
             + "                    </div>");
 }
 
 function loadRadioResp(id, respOpciones) {
-    var aux=0;
+    var aux = 0;
     $.each(respOpciones, function (i, val) {
         $("#" + id + "").append("<div class=\"form-radio\">\n"
                 + "                                <label>\n"
                 + "                                    <input type=\"radio\" name=\"" + id + "\" value=\"" + aux + "\" > <span class=\"label-text\">" + val + "</span>\n"
                 + "                                </label>\n"
                 + "                            </div>\n");
-    aux++;
+        aux++;
     });
 }
 
 function loadMultiple(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group multiple\">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group pregunta multiple\">\n" +
             "                        <div class=\"panel-heading\">\n" +
             "                            <h4>" + titulo + "</h4>\n" +
             "                        </div>\n" +
@@ -139,7 +131,6 @@ function loadMultiple(id, titulo) {
 
 function loadMultipleResp(id, respOpciones) {
     var aux = 0;
-    $("#" + id + "").append("<option value=\"-1\" selected disabled>Elija por lo menos una opción... </option>\n");
     $.each(respOpciones, function (i, val) {
         $("#" + id + "").append("<option value=" + aux + ">" + val + "</option>");
         aux++;
@@ -148,7 +139,7 @@ function loadMultipleResp(id, respOpciones) {
 }
 
 function loadCheckbox(id, titulo) {
-    $("#examen").append("<div class=\"panel panel-primary form-group \">\n" +
+    $("#examen").append("<div class=\"panel panel-primary form-group pregunta \">\n" +
             "                        <div class=\"panel-heading\">\n" +
             "                            <h4>" + titulo + "</h4>\n" +
             "                        </div>\n" +
@@ -158,7 +149,7 @@ function loadCheckbox(id, titulo) {
 }
 
 function loadCheckboxResp(id, respOpciones) {
-    var aux=0;
+    var aux = 0;
     $.each(respOpciones, function (i, val) {
         $("#" + id + "").append("<div class=\"form-check\">\n" +
                 "                                <label>\n" +
@@ -172,7 +163,7 @@ function loadCheckboxResp(id, respOpciones) {
 
 
 function loadButtonSubmit() {
-    $("#examen").append(" <div class=\"panel-footer\">\n" +
+    $("#examen").append(" <div class=\"panel-footer \">\n" +
             "                        <div class=\"row\">\n" +
             "                            <div class=\"col-md-6\">\n" +
             "                            </div>\n" +
@@ -184,6 +175,7 @@ function loadButtonSubmit() {
             "                    </div>");
 
     $("#enviarNotas").click(function () {
+        alert()
         enviarDatos();
     });
 }
@@ -194,7 +186,30 @@ function enviarDatos() {
         cogerText();
         cogerRadio();
         cogerCheckbox();
+
+        var url = "CorrectNotes";
+        var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
+
+        $("#overlay").show();
+        $("#loader").show();
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: {respuestas: respuestas},
+            success: function () {
+                location.reload();
+            },
+            error: function (e) {
+                if (e["responseJSON"] === undefined) {
+                    $("#loader").hide();
+                    $("#overlay").hide();
+                    alert(emess);
+                } else
+                    alert(e["responseJSON"]["error"]);
+            }
+        });
     }
+
 }
 
 function cogerSelect() {
@@ -202,36 +217,37 @@ function cogerSelect() {
         var idSelect = $(this).attr("id");
         var optAux = $(this).val();
 
-        //respuestas.push("{\"id\":\""+idSelect+"\",\"respuesta\":["+optAux+"]}");
+        respuestas.push("{\"id\":\"" + idSelect + "\",\"respuesta\":[" + optAux + "]}");
     });
 }
 
-function cogerText(){
+function cogerText() {
     $("input[type=text]").each(function () {
         var idTxt = $(this).attr("id");
         var txtAux = $(this).val();
-       
-        //respuestas.push("{\"id\":\""+idSelect+"\",\"respuesta\":["+optAux+"]}");
+
+        respuestas.push("{\"id\":\"" + idTxt + "\",\"respuesta\":[" + txtAux + "]}");
     });
 }
 
 function cogerRadio() {
     $(".radio").each(function () {
         var idRadio = $(this).attr("id");
-        var radioAux = $('input[name='+idRadio+']:checked').val();
+        var radioAux = $('input[name=' + idRadio + ']:checked').val();
 
-        //respuestas.push("{\"id\":\""+idSelect+"\",\"respuesta\":["+optAux+"]}");
+        respuestas.push("{\"id\":\"" + idRadio + "\",\"respuesta\":[" + radioAux + "]}");
     });
 }
 
 function cogerCheckbox() {
     $(".checkbox").each(function () {
         var idCheck = $(this).attr("id");
-        $('input[name='+idCheck+']:checked').each(function () {
-             var checkAux =$(this).val();           
+        var checkArray = [];
+        $('input[name=' + idCheck + ']:checked').each(function () {
+            var checkAux = $(this).val();
+            checkArray.push(checkAux);
         });
-        
-        //respuestas.push("{\"id\":\""+idSelect+"\",\"respuesta\":["+optAux+"]}");
+        respuestas.push("{\"id\":\"" + idCheck + "\",\"respuesta\":[" + checkArray + "]}");
     });
 }
 
@@ -269,11 +285,11 @@ function comprobarText() {
 
 
 
-function comprobarRadio(){
+function comprobarRadio() {
     var aux = true;
-    $(".radio").each(function () {       
-        var radioAux = $('input[name='+$(this).attr("id")+']:checked').val();
-        if (!(radioAux>=0)) {
+    $(".radio").each(function () {
+        var radioAux = $('input[name=' + $(this).attr("id") + ']:checked').val();
+        if (!(radioAux >= 0)) {
             document.getElementsByName($(this).attr("id"))[0].focus();
             alert("Por favor, seleccione una opción");
             aux = false;
@@ -285,11 +301,11 @@ function comprobarRadio(){
     }
 }
 
-function comprobarCheckbox(){
+function comprobarCheckbox() {
     var aux = true;
-    $(".checkbox").each(function () {       
-        var checkAux = $('input[name='+$(this).attr("id")+']:checked').val();
-        if (!(checkAux>=0)) {
+    $(".checkbox").each(function () {
+        var checkAux = $('input[name=' + $(this).attr("id") + ']:checked').val();
+        if (!(checkAux >= 0)) {
             document.getElementsByName($(this).attr("id"))[0].focus();
             alert("Por favor, elija por lo menos una opción");
             aux = false;

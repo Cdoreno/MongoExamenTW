@@ -43,10 +43,11 @@
 
                             </tbody>
                         </table>
-                    </div>
-                    <div class="text-center">
+                        <div class="text-center">
                     <button type="button" class="btn btn-primary" id="returnInicio">Volver al inicio</button>
                 </div>
+                    </div>
+                    
                 </div>
                 
             </div>

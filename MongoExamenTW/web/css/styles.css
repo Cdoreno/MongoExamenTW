@@ -4,7 +4,7 @@ html,body {
     margin:0px;
     padding:0px;
     background: #e6ffff; 
-    background: linear-gradient(#e6ffff, #ccffff); 
+
 }
 
 *{
@@ -82,6 +82,46 @@ html,body {
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
     animation-duration: 1s
+}
+
+.panel-default>.panel-heading{
+    color:white;
+    background-color: navy;
+}
+
+.panel-body{
+    background-color: #a8dcf0;
+}
+
+.form-control{
+    background-color: #e6f9ff;
+    color:navy;
+}
+
+.btn-secondary{
+    color:navy;
+    background-color: white;
+}
+
+.btn-primary,.btn-success{
+    background-color: navy;
+}
+
+.panel-footer{
+    background-color: DeepSkyBlue ;
+}
+
+.well{
+    background-color: white;
+    color:navy;
+}
+
+.label-text,p,table{
+    color:navy;
+}
+
+.checkbox, .radio{
+    margin:0;
 }
 
 @-webkit-keyframes animatebottom {

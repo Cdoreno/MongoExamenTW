@@ -42,19 +42,6 @@ public class NotesServlet extends HttpServlet {
         MongoDatabase database = mongoClient.getDatabase("examen");
 
         MongoCollection<Document> collection = database.getCollection("notas");
-        /*ESTO VA EN EL POST, ES SOLO PARA VER LOS CAMBIOS!!!!!!!!!!!!!!!!!!!!!!!!!*/
-        
-        String dni="12345678X";
-        String ex="B";
-        //Crear notas
-        Document nota = new Document("dni",dni )
-                .append("nameExam", ex)
-                .append("nota", "4");
-     
-        //Insert document
-        collection.updateOne(and(eq("dni", dni),eq("nameExam",ex)), nota,new UpdateOptions().upsert(true).bypassDocumentValidation(true));
-
-        /*FIN DE LO QUE VA EN EL POST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
         
         //Search document
         MongoCursor<Document> myDoc = collection.find().projection(fields(include("dni","nameExam","nota"), excludeId())).iterator();
@@ -97,11 +84,15 @@ String dni = (String) request.getAttribute("dni");
         int notaValor = calcularNota(respUser);
         
         //Crear notas
-        Document nota = new Document("dni", dni)
+        Document nota = new Document("dni",dni )
                 .append("nameExam", examName)
                 .append("nota", notaValor);
      
         //Insert document
+        MongoCursor<Document> myDocAux = collection.find(and(eq("dni", dni),eq("nameExam",examName))).iterator();
+        if(myDocAux.hasNext()){
+            collection.deleteOne(and(eq("dni", dni),eq("nameExam",examName)));
+        }
         collection.insertOne(nota);
 
         mongoClient.close();

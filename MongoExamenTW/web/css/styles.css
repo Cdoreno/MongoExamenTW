@@ -4,7 +4,7 @@ html,body {
     margin:0px;
     padding:0px;
     background: #e6ffff; 
-    background: linear-gradient(#e6ffff, #ccffff); 
+
 }
 
 *{
@@ -84,6 +84,69 @@ html,body {
     animation-duration: 1s
 }
 
+.panel-default>.panel-heading{
+    color:white;
+    background-color: navy;
+}
+
+.panel-body,.modal-footer{
+    background-color: #a8dcf0;
+}
+
+.form-control,.modal-body{
+    background-color: #e6f9ff;
+    color:navy;
+}
+
+.btn-secondary{
+    color:navy;
+    background-color: white;
+}
+
+.btn-secondary:hover{
+    color:navy;
+    background-color: gray;
+    background: linear-gradient(lightgray,gray);
+}
+
+.btn-primary,.btn-success{
+    background-color: navy;
+}
+
+.btn-primary:hover,.btn-success:hover{
+    color:white;
+    background-color: darkblue;
+    background: linear-gradient(blue, darkblue);
+}
+
+.panel-footer{
+    background-color: DeepSkyBlue ;
+}
+
+.well{
+    background-color: white;
+    color:navy;
+}
+
+.label-text,p,table{
+    color:navy;
+}
+
+.checkbox, .radio{
+    margin:0;
+}
+
+#okModal{
+    min-width: 200px;
+    margin:auto;
+}
+
+.modal{
+    margin-top: 25px;
+}
+.modal-footer{
+    text-align: center;
+}
 @-webkit-keyframes animatebottom {
     from { bottom:-100px; opacity:0 } 
     to { bottom:0px; opacity:1 }

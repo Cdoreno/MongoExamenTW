@@ -157,7 +157,7 @@ public class InfoExam extends HttpServlet {
                 .append("preguntaTexto", "Valore este examen (sabiendo que una mala valoración podría bajar su nota...)")
                 .append("respOpciones",Arrays.asList("a) Es genial","b) Increíble","c) Malísimo (PISTA: Esta no la marques...)"));
 
-        //Crear array preguntas !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //Crear array preguntas 
         List<Document> preguntasA = new ArrayList<>();
         preguntasA.add(pregunta1);
         preguntasA.add(pregunta2);
@@ -242,39 +242,39 @@ public class InfoExam extends HttpServlet {
 
     private String checkExamsAvailables(String dni) {
         try {
-            MongoClientURI uri = new MongoClientURI(
-                    "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
-            MongoClient mongoClient = new MongoClient(uri);
-
-            MongoDatabase database = mongoClient.getDatabase("examen");
-
-            MongoCollection<Document> collection = database.getCollection("notas");
-
-            //Search document
-            MongoCursor<Document> myDoc = collection.find(eq("dni", dni)).projection(fields(include("nameExam"), excludeId())).iterator();
+//            MongoClientURI uri = new MongoClientURI(
+//                    "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
+//            MongoClient mongoClient = new MongoClient(uri);
+//
+//            MongoDatabase database = mongoClient.getDatabase("examen");
+//
+//            MongoCollection<Document> collection = database.getCollection("notas");
+//
+//            //Search document
+//            MongoCursor<Document> myDoc = collection.find(eq("dni", dni)).projection(fields(include("nameExam"), excludeId())).iterator();
             ArrayList<String> examsName = new ArrayList();
             examsName.add("A");
             examsName.add("B");
             examsName.add("C");
 
-            while (myDoc.hasNext()) {
-                switch (myDoc.next().toJson()) {
-                    case "{ \"nameExam\" : \"A\" }":
-                        examsName.remove(examsName.indexOf("A"));
-                        break;
-                    case "{ \"nameExam\" : \"B\" }":
-                        examsName.remove(examsName.indexOf("B"));
-                        break;
-                    case "{ \"nameExam\" : \"C\" }":
-                        examsName.remove(examsName.indexOf("C"));
-                        break;
-                    default:
-                        break;
-                }
-            }
-            if (examsName.isEmpty()) {
-                return "{\"mess\":\"No tienes examenes disponibles.\"}";
-            }
+//            while (myDoc.hasNext()) {
+//                switch (myDoc.next().toJson()) {
+//                    case "{ \"nameExam\" : \"A\" }":
+//                        examsName.remove(examsName.indexOf("A"));
+//                        break;
+//                    case "{ \"nameExam\" : \"B\" }":
+//                        examsName.remove(examsName.indexOf("B"));
+//                        break;
+//                    case "{ \"nameExam\" : \"C\" }":
+//                        examsName.remove(examsName.indexOf("C"));
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//            if (examsName.isEmpty()) {
+//                return "{\"mess\":\"No tienes examenes disponibles.\"}";
+//            }
 
             String docAux = "[ ";
 
@@ -285,8 +285,8 @@ public class InfoExam extends HttpServlet {
             docAux = docAux.substring(0, docAux.length() - 1);
             docAux += "]";
 
-            myDoc.close();
-            mongoClient.close();
+//            myDoc.close();
+//            mongoClient.close();
             return docAux;
         } catch (Exception e) {
             return "{\"error\":\"Error al cargar los examenes\"}";

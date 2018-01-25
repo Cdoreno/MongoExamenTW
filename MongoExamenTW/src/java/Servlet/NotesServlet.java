@@ -10,9 +10,12 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Projections.excludeId;
 import static com.mongodb.client.model.Projections.fields;
 import static com.mongodb.client.model.Projections.include;
+import com.mongodb.client.model.UpdateOptions;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -39,6 +42,20 @@ public class NotesServlet extends HttpServlet {
         MongoDatabase database = mongoClient.getDatabase("examen");
 
         MongoCollection<Document> collection = database.getCollection("notas");
+        /*ESTO VA EN EL POST, ES SOLO PARA VER LOS CAMBIOS!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        
+        String dni="12345678X";
+        String ex="B";
+        //Crear notas
+        Document nota = new Document("dni",dni )
+                .append("nameExam", ex)
+                .append("nota", "4");
+     
+        //Insert document
+        collection.updateOne(and(eq("dni", dni),eq("nameExam",ex)), nota,new UpdateOptions().upsert(true).bypassDocumentValidation(true));
+
+        /*FIN DE LO QUE VA EN EL POST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+        
         //Search document
         MongoCursor<Document> myDoc = collection.find().projection(fields(include("dni","nameExam","nota"), excludeId())).iterator();
 

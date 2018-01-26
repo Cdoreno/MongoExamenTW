@@ -8,6 +8,9 @@ $(document).ready(function () {
     $("#verNotas").click(function () {
         window.location.replace("notes.jsp");
     });
+        $("#okModal").click(function () {
+        $("#alertModal").modal('hide');
+    });
 });
 
 function infoExam() {
@@ -29,7 +32,7 @@ function infoExam() {
                     $("#loader").hide();
                     $("#overlay").hide();
                     $("#dni").focus();
-                    alert(jsn["mess"]);
+                    showAlert(jsn["mess"]);
                 } else {
                     $.each(jsn, function () {
                         var nameAux = this.nameExam;
@@ -44,9 +47,9 @@ function infoExam() {
                 if (e["responseJSON"] === undefined) {
                     $("#loader").hide();
                     $("#overlay").hide();
-                    alert(emess);
+                    showAlert(emess);
                 } else
-                    alert(e["responseJSON"]["error"]);
+                    showAlert(e["responseJSON"]["error"]);
             }
         });
     }
@@ -77,15 +80,20 @@ function typeExam() {
                 if (e["responseJSON"] === undefined) {
                     $("#loader").hide();
                     $("#overlay").hide();
-                    alert(emess);
+                    showAlert(emess);
                 } else
-                    alert(e["responseJSON"]["error"]);
+                    showAlert(e["responseJSON"]["error"]);
             }
         });
 
 
     } else {
-        alert("No tiene seleccionado ningún examen.");
+        showAlert("No tiene seleccionado ningún examen.");
     }
     return false;
+}
+
+function showAlert(text) {
+    $("#pModal").text(text);
+    $("#alertModal").modal({backdrop: "static", keyboard: "false"});
 }

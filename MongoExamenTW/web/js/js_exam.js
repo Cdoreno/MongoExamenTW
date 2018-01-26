@@ -4,8 +4,17 @@ $(document).ready(function () {
     $("#overlay").show();
     $("#loader").show();
 
-
     loadExam();
+    
+    $("#verNotas").click(function () {
+        window.location.replace("notes.jsp");
+    });
+    $("#login").click(function () {
+        window.location.replace("InfoExam");
+    });
+        $("#okModal").click(function () {
+        $("#alertModal").modal('hide');
+    });
 });
 
 function loadExam() {
@@ -45,9 +54,9 @@ function loadExam() {
         },
         error: function (e) {
             if (e["responseJSON"] === undefined)
-                alert(emess);
+                showAlert(emess);
             else {
-                alert(e["responseJSON"]["error"]);
+                showAlert(e["responseJSON"]["error"]);
             }
             $("#loader").hide();
             $("#overlay").hide();
@@ -175,12 +184,12 @@ function loadButtonSubmit() {
             "                    </div>");
 
     $("#enviarNotas").click(function () {
-        alert()
         enviarDatos();
     });
 }
 
 function enviarDatos() {
+
 //    if (comprobarSelect()) {
     cogerSelect();
     cogerText();
@@ -200,6 +209,8 @@ function enviarDatos() {
                 data: {respuestas: respuestas},
                 success: function () {
                     alert(respuestas);
+                  //var nota="8" // PONER NOTA CORRECTA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //mostrarNota(nota);
                 },
                 error: function (e) {
                     if (e["responseJSON"] === undefined) {
@@ -210,6 +221,7 @@ function enviarDatos() {
                         alert(e["responseJSON"]["error"]);
                 }
             });
+
 }
 
 //}
@@ -258,7 +270,7 @@ function comprobarSelect() {
     $("select").each(function () {
         if ($(this).val() == "" || $(this).val() == null) {
             $(this).focus();
-            alert("Por favor, elija una opción");
+            showAlert("Por favor, elija una opción");
             aux = false;
             return false;
         }
@@ -275,7 +287,7 @@ function comprobarText() {
     $("input[type=text]").each(function () {
         if ($(this).val() == "" || $(this).val() == null) {
             $(this).focus();
-            alert("Por favor, escriba una respuesta");
+            showAlert("Por favor, escriba una respuesta");
             aux = false;
             return false;
         }
@@ -293,7 +305,7 @@ function comprobarRadio() {
         var radioAux = $('input[name=' + $(this).attr("id") + ']:checked').val();
         if (!(radioAux >= 0)) {
             document.getElementsByName($(this).attr("id"))[0].focus();
-            alert("Por favor, seleccione una opción");
+            showAlert("Por favor, seleccione una opción");
             aux = false;
             return false;
         }
@@ -309,7 +321,7 @@ function comprobarCheckbox() {
         var checkAux = $('input[name=' + $(this).attr("id") + ']:checked').val();
         if (!(checkAux >= 0)) {
             document.getElementsByName($(this).attr("id"))[0].focus();
-            alert("Por favor, elija por lo menos una opción");
+            showAlert("Por favor, elija por lo menos una opción");
             aux = false;
             return false;
         }
@@ -317,4 +329,14 @@ function comprobarCheckbox() {
     if (aux) {
         return true;
     }
+}
+
+function mostrarNota(nota){
+     $("#parrafoNotaModal").text("Tu nota final es "+nota);
+    $("#notaModal").modal({backdrop: "static", keyboard: "false"});
+}
+
+function showAlert(text) {
+    $("#pModal").text(text);
+    $("#alertModal").modal({backdrop: "static", keyboard: "false"});
 }

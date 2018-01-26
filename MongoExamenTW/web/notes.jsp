@@ -43,14 +43,27 @@
 
                             </tbody>
                         </table>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" id="returnInicio">Volver al inicio</button>
+                        </div>
                     </div>
-                    <div class="text-center">
-                    <button type="button" class="btn btn-primary" id="returnInicio">Volver al inicio</button>
-                </div>
-                </div>
-                
-            </div>
 
+                </div>
+                <div class="modal fade" id="alertModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">     
+                            <div class="modal-body text-center">
+                                <div id="parrafosAbout">
+                                    <p id="pModal"></p>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-primary" id="okModal">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-2">
             </div>
         </div>

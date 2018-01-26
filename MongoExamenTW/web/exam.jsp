@@ -76,5 +76,8 @@
             <div class="col-md-2">
             </div>
         </div>
+        <div class="getDni" id="<%= request.getAttribute("dni") %>"></div>
+        <div class="getExam" id="<%= request.getAttribute("examName") %>"></div>
+        
     </body>
 </html>

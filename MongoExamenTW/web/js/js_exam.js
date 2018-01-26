@@ -181,43 +181,45 @@ function loadButtonSubmit() {
 }
 
 function enviarDatos() {
-    if (comprobarSelect()) {
-        cogerSelect();
-        cogerText();
-        cogerRadio();
-        cogerCheckbox();
+//    if (comprobarSelect()) {
+    cogerSelect();
+    cogerText();
+    cogerRadio();
+    cogerCheckbox();
 
-        var url = "CorrectNotes";
-        var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
+    var url = "CorrectNotes";
+    var emess = "Error interno del servidor, contacte con el administrador de la pagina.";
 
-        $("#overlay").show();
-        $("#loader").show();
-        $.ajax({
-            url: url,
-            method: "POST",
-            data: {respuestas: respuestas},
-            success: function () {
-                location.reload();
-            },
-            error: function (e) {
-                if (e["responseJSON"] === undefined) {
-                    $("#loader").hide();
-                    $("#overlay").hide();
-                    alert(emess);
-                } else
-                    alert(e["responseJSON"]["error"]);
-            }
-        });
-    }
-
+    $("#overlay").show();
+    $("#loader").show();
+    alert(respuestas),
+            $.ajax({
+                url: url,
+                method: "POST",
+                dataType: 'JSON',
+                data: {respuestas: respuestas},
+                success: function () {
+                    alert(respuestas);
+                },
+                error: function (e) {
+                    if (e["responseJSON"] === undefined) {
+                        $("#loader").hide();
+                        $("#overlay").hide();
+                        alert(emess);
+                    } else
+                        alert(e["responseJSON"]["error"]);
+                }
+            });
 }
+
+//}
 
 function cogerSelect() {
     $("select").each(function () {
         var idSelect = $(this).attr("id");
         var optAux = $(this).val();
 
-        respuestas.push("{\"id\":\"" + idSelect + "\",\"respuesta\":[" + optAux + "]}");
+        respuestas.push("{\"id\":\"" + idSelect + "\",\"respuesta\":[\"" + optAux + "\"]}");
     });
 }
 
@@ -226,7 +228,7 @@ function cogerText() {
         var idTxt = $(this).attr("id");
         var txtAux = $(this).val();
 
-        respuestas.push("{\"id\":\"" + idTxt + "\",\"respuesta\":[" + txtAux + "]}");
+        respuestas.push("{\"id\":\"" + idTxt + "\",\"respuesta\":[\"" + txtAux + "\"]}");
     });
 }
 
@@ -235,7 +237,7 @@ function cogerRadio() {
         var idRadio = $(this).attr("id");
         var radioAux = $('input[name=' + idRadio + ']:checked').val();
 
-        respuestas.push("{\"id\":\"" + idRadio + "\",\"respuesta\":[" + radioAux + "]}");
+        respuestas.push("{\"id\":\"" + idRadio + "\",\"respuesta\":[\"" + radioAux + "\"]}");
     });
 }
 
@@ -247,7 +249,7 @@ function cogerCheckbox() {
             var checkAux = $(this).val();
             checkArray.push(checkAux);
         });
-        respuestas.push("{\"id\":\"" + idCheck + "\",\"respuesta\":[" + checkArray + "]}");
+        respuestas.push("{\"id\":\"" + idCheck + "\",\"respuesta\":[\"" + checkArray + "\"]}");
     });
 }
 

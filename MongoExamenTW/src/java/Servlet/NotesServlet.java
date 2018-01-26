@@ -30,7 +30,7 @@ import org.bson.Document;
  *
  * @author Ramon
  */
-public class NotesServlet extends HttpServlet { 
+public class NotesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,9 +42,9 @@ public class NotesServlet extends HttpServlet {
         MongoDatabase database = mongoClient.getDatabase("examen");
 
         MongoCollection<Document> collection = database.getCollection("notas");
-        
+
         //Search document
-        MongoCursor<Document> myDoc = collection.find().projection(fields(include("dni","nameExam","nota"), excludeId())).iterator();
+        MongoCursor<Document> myDoc = collection.find().projection(fields(include("dni", "nameExam", "nota"), excludeId())).iterator();
 
         //Send document
         response.setContentType("application/json");
@@ -66,14 +66,12 @@ public class NotesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-//        String dni = request.getParameter("dni");
-//        String examName = request.getParameter("nameExam");
-String examName = (String) request.getAttribute("examName");
-String dni = (String) request.getAttribute("dni");
-        String respUser = request.getParameter("respuestas");//ARRAY???????????????????????????????????
-        
-         MongoClientURI uri = new MongoClientURI(
+
+        String examName = request.getParameter("examName");
+        String dni = request.getParameter("dni");
+        String notaValor = request.getParameter("nota");
+
+        MongoClientURI uri = new MongoClientURI(
                 "mongodb+srv://admin:admin@examendb-wge65.mongodb.net/test");
         MongoClient mongoClient = new MongoClient(uri);
 
@@ -81,30 +79,28 @@ String dni = (String) request.getAttribute("dni");
 
         MongoCollection<Document> collection = database.getCollection("notas");
 
-        int notaValor = calcularNota(respUser);
-        
         //Crear notas
-        Document nota = new Document("dni",dni )
+        Document nota = new Document("dni", dni)
                 .append("nameExam", examName)
                 .append("nota", notaValor);
-     
+
         //Insert document
-        MongoCursor<Document> myDocAux = collection.find(and(eq("dni", dni),eq("nameExam",examName))).iterator();
-        if(myDocAux.hasNext()){
-            collection.deleteOne(and(eq("dni", dni),eq("nameExam",examName)));
+        MongoCursor<Document> myDocAux = collection.find(and(eq("dni", dni), eq("nameExam", examName))).iterator();
+        if (myDocAux.hasNext()) {
+            collection.deleteOne(and(eq("dni", dni), eq("nameExam", examName)));
         }
         collection.insertOne(nota);
 
         mongoClient.close();
-        
+
     }
-    
-    private int calcularNota(String s){
+
+    private int calcularNota(String s) {
         return 0;
     }
-    
-    private String enmascararDni(String s){
-        return s.replace(s.substring(11, 15),"****");
+
+    private String enmascararDni(String s) {
+        return s.replaceFirst(s.substring(11, 15), "****");
     }
 
 }
